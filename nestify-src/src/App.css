@@ -1,0 +1,557 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f8f9fb;
+  color: #172033;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+  background: white;
+  border-bottom: 1px solid #eeeeee;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  height: 75px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 25px;
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: 800;
+  color: #172033;
+}
+
+.logo span {
+  color: #4f46e5;
+}
+
+.nav-links {
+  display: flex;
+  gap: 35px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #555;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.nav-links a:hover {
+  color: #4f46e5;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.login-btn {
+  border: none;
+  background: transparent;
+  padding: 11px 18px;
+}
+
+.signup-btn {
+  border: none;
+  background: #4f46e5;
+  color: white;
+  padding: 11px 20px;
+  border-radius: 8px;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+  min-height: 590px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 18, 40, 0.9),
+      rgba(10, 18, 40, 0.45)
+    ),
+    url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d")
+    center/cover;
+
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  width: 1200px;
+  margin: auto;
+  padding: 60px 25px;
+  color: white;
+}
+
+.hero-small {
+  font-size: 13px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  color: #c7c9ff;
+  font-weight: bold;
+}
+
+.hero h1 {
+  font-size: 58px;
+  line-height: 1.08;
+  margin-bottom: 25px;
+}
+
+.hero h1 span {
+  color: #8b85ff;
+}
+
+.hero-description {
+  max-width: 550px;
+  color: #e0e0e0;
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 35px;
+}
+
+/* ================= SEARCH ================= */
+
+.search-box {
+  background: white;
+  color: #172033;
+
+  max-width: 900px;
+  min-height: 82px;
+
+  border-radius: 12px;
+  padding: 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.search-item {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px 18px;
+  border-right: 1px solid #eee;
+}
+
+.search-item span {
+  font-size: 20px;
+}
+
+.search-item small {
+  display: block;
+  color: #888;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.search-item p {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* search-item now contains real inputs/selects instead of static <p> text */
+.search-item input,
+.search-item select {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #172033;
+  outline: none;
+  width: 100%;
+}
+
+.search-btn {
+  border: none;
+  background: #4f46e5;
+  color: white;
+
+  padding: 17px 28px;
+  border-radius: 8px;
+
+  font-weight: 600;
+}
+
+.search-btn:hover {
+  background: #4338ca;
+}
+
+/* ================= PROPERTIES ================= */
+
+.properties-section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 80px 25px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 35px;
+}
+
+.section-label {
+  color: #4f46e5;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.section-heading h2 {
+  font-size: 36px;
+}
+
+.view-btn {
+  border: none;
+  background: transparent;
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+.results-count {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.no-results {
+  background: white;
+  border: 1px dashed #ddd;
+  border-radius: 14px;
+  padding: 60px 20px;
+  text-align: center;
+  color: #666;
+}
+
+.no-results button {
+  margin-top: 14px;
+  border: none;
+  background: #4f46e5;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* ================= LAYOUT ================= */
+
+.properties-layout {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 30px;
+}
+
+/* ================= FILTER SIDEBAR ================= */
+
+.filter-sidebar {
+  background: white;
+  border: 1px solid #eeeeee;
+  border-radius: 14px;
+  padding: 25px;
+  height: fit-content;
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-header h3 {
+  font-size: 18px;
+}
+
+.filter-header button {
+  border: none;
+  background: transparent;
+  color: #4f46e5;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.filter-group select,
+.filter-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+  outline: 2px solid #4f46e5;
+  border-color: #4f46e5;
+}
+
+.checkbox-filter {
+  margin-bottom: 14px;
+}
+
+.checkbox-filter label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #444;
+  cursor: pointer;
+}
+
+.checkbox-filter input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* ================= PROPERTY GRID ================= */
+
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+/* ================= CARD ================= */
+
+.property-card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+
+  border: 1px solid #eeeeee;
+
+  transition: 0.25s;
+}
+
+.property-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.property-image {
+  height: 220px;
+  position: relative;
+}
+
+.property-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heart {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: white;
+  font-size: 22px;
+  color: #172033;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.heart:hover {
+  transform: scale(1.08);
+}
+
+.heart.active {
+  color: #e0245e;
+}
+
+.verified-badge {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+
+  background: #16a34a;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.property-info {
+  padding: 20px;
+}
+
+.property-price {
+  color: #4f46e5;
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.property-info h3 {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.location {
+  color: #888;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+.property-details {
+  display: flex;
+  gap: 18px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+
+  color: #666;
+  font-size: 13px;
+  flex-wrap: wrap;
+  row-gap: 6px;
+}
+
+.property-tags {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: #f1f0fe;
+  color: #4f46e5;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+  background: #111827;
+  color: white;
+  padding: 60px 25px;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+footer h2 {
+  margin-bottom: 10px;
+}
+
+footer h3 {
+  margin-bottom: 14px;
+  font-size: 16px;
+}
+
+footer p {
+  color: #cbd5e1;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 900px) {
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .search-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-item {
+    border-right: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .properties-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .property-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+
+  .hero h1 {
+    font-size: 35px;
+  }
+
+  .property-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+
+  .section-heading h2 {
+    font-size: 28px;
+  }
+
+  footer {
+    flex-direction: column;
+  }
+}
