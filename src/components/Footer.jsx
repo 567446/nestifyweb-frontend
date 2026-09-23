@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer" id="footer">
 
       <div>
         <h2>🏠 Nestify</h2>
@@ -13,17 +14,16 @@ export default function Footer() {
 
       <div>
         <h3>Quick Links</h3>
-        <p>Home</p>
-        <p>Properties</p>
-        <p>About Us</p>
-        <p>Contact</p>
+        <Link to="/">Home</Link>
+        <Link to="/properties">Properties</Link>
+        <Link to="/about">About Us</Link>
       </div>
 
       <div>
         <h3>Contact</h3>
         <p>📍 Mumbai, India</p>
-        <p>📧 support@nestify.com</p>
-        <p>📞 +91 98765 43210</p>
+        <p>📧 Vinitrsn07@gmail.com</p>
+        <p>📞 +91 91366 15093</p>
       </div>
 
     </footer>

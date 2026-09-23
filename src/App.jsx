@@ -1,34 +1,34 @@
-import { useState } from 'react'
-import './App.css'
-import Navbar from './components/Navbar'
-import Home from './pages/Home'
-import Properties from './pages/Properties'
-import Footer from './components/Footer'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './App.css';
+import { AuthProvider } from './context/AuthContext';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Properties from './pages/Properties';
+import PropertyDetail from './pages/PropertyDetail';
+import About from './pages/About';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
-  const [searchFilters, setSearchFilters] = useState(null);
-
-  const handleHeroSearch = ({ location, propertyType, priceRange }) => {
-    let minPrice = "";
-    let maxPrice = "";
-    if (priceRange) {
-      const [min, max] = priceRange.split('-');
-      minPrice = min;
-      maxPrice = max;
-    }
-    setSearchFilters({ location, propertyType, minPrice, maxPrice });
-  };
-
   return (
-    <>
-      <Navbar/>
-      <main>
-      <Home onSearch={handleHeroSearch}/>
-      <Properties filters={searchFilters}/>
-      </main>
-      <Footer/>
-    </>
-  )
+    <AuthProvider>
+      <BrowserRouter>
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/properties" element={<Properties />} />
+            <Route path="/property/:id" element={<PropertyDetail />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </main>
+        <Footer />
+      </BrowserRouter>
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;

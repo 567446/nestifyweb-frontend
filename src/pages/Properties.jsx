@@ -1,7 +1,11 @@
 
+import { useLocation, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import PropertyCard from '../components/PropertyCard';
 import FilterSidebar from '../components/FilterSidebar';
 import properties from '../data/propertiesData';
+import { useAuth } from '../context/AuthContext';
+import { getFavorites, toggleFavorite as toggleFavoriteStorage } from '../utils/favorites';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useMemo } from 'react';
@@ -18,9 +22,14 @@ const defaultFilters = {
   locationQuery: ""
 };
 
-function Properties({ incomingFilters }) {
+function Properties() {
+  const routerLocation = useLocation();
+  const navigate = useNavigate();
+  const incomingFilters = routerLocation.state;
+
   const [filters, setFilters] = useState(defaultFilters);
   const [favorites, setFavorites] = useState(new Set());
+  const { user, isAuthenticated } = useAuth();
 
   useEffect(() => {
     if (!incomingFilters) return;
@@ -33,16 +42,21 @@ function Properties({ incomingFilters }) {
     }));
   }, [incomingFilters]);
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      setFavorites(new Set(getFavorites(user.id)));
+    } else {
+      setFavorites(new Set());
+    }
+  }, [isAuthenticated, user]);
+
   const toggleFavorite = (id) => {
-    setFavorites((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+    const updated = toggleFavoriteStorage(user.id, id);
+    setFavorites(new Set(updated));
   };
 
   const filteredProperties = useMemo(() => {
@@ -97,20 +111,32 @@ function Properties({ incomingFilters }) {
           </p>
 
           {filteredProperties.length === 0 ? (
-            <div className="no-results">
+            <motion.div
+              className="no-results"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
               <p>No properties match your filters.</p>
-              <button onClick={() => setFilters(defaultFilters)}>Clear filters</button>
-            </div>
+              <motion.button
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                onClick={() => setFilters(defaultFilters)}
+              >
+                Clear filters
+              </motion.button>
+            </motion.div>
           ) : (
             <div className="property-grid">
-              {filteredProperties.map((property) => (
-                <PropertyCard
-                  key={property.id}
-                  property={property}
-                  isFavorite={favorites.has(property.id)}
-                  onToggleFavorite={() => toggleFavorite(property.id)}
-                />
-              ))}
+              <AnimatePresence>
+                {filteredProperties.map((property) => (
+                  <PropertyCard
+                    key={property.id}
+                    property={property}
+                    isFavorite={favorites.has(property.id)}
+                    onToggleFavorite={() => toggleFavorite(property.id)}
+                  />
+                ))}
+              </AnimatePresence>
             </div>
           )}
         </div>

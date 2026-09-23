@@ -1,35 +1,44 @@
 import React from 'react'
+import { Link, NavLink } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useAuth } from '../context/AuthContext';
 
 function Navbar() {
-
-  const scrollToProperties = (e) => {
-    e.preventDefault();
-    document.getElementById('properties')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const scrollToFooter = (e) => {
-    e.preventDefault();
-    document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const { user, isAuthenticated, logout } = useAuth();
 
   return (
     <nav className="navbar">
       <div className="nav-container">
 
-        <div className="logo">
+        <Link to="/" className="logo">
           Nest<span>ify</span>
-        </div>
+        </Link>
 
         <div className="nav-links">
-          <a href="#properties" onClick={scrollToProperties}>Buy</a>
-          <a href="#properties" onClick={scrollToProperties}>Rent</a>
-          <a href="#properties" onClick={scrollToProperties}>Sell</a>
-          <a href="#footer" onClick={scrollToFooter}>About</a>
+          <NavLink to="/" end>Home</NavLink>
+          <NavLink to="/properties">Properties</NavLink>
+          <NavLink to="/about">About</NavLink>
         </div>
 
         <div className="nav-actions">
-          <button className="login-btn">Login</button>
-          <button className="signup-btn">Sign Up</button>
+          {isAuthenticated ? (
+            <>
+              <span className="nav-user">Hi, {user?.name?.split(' ')[0]}</span>
+              <motion.button
+                className="login-btn"
+                onClick={logout}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Log out
+              </motion.button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="login-btn">Login</Link>
+              <Link to="/register" className="signup-btn">Sign Up</Link>
+            </>
+          )}
         </div>
 
       </div>

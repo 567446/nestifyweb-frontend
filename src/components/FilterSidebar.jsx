@@ -34,7 +34,6 @@ export default function FilterSidebar({ filters, setFilters }) {
         </button>
       </div>
 
-      {/* District */}
       <div className="filter-group">
         <label>District</label>
 
@@ -51,7 +50,6 @@ export default function FilterSidebar({ filters, setFilters }) {
         </select>
       </div>
 
-      {/* Property Type */}
       <div className="filter-group">
         <label>Property Type</label>
 
@@ -69,7 +67,6 @@ export default function FilterSidebar({ filters, setFilters }) {
         </select>
       </div>
 
-      {/* BHK */}
       <div className="filter-group">
         <label>BHK</label>
 
@@ -87,7 +84,6 @@ export default function FilterSidebar({ filters, setFilters }) {
         </select>
       </div>
 
-      {/* Minimum Price */}
       <div className="filter-group">
         <label>Minimum Price</label>
 
@@ -101,7 +97,6 @@ export default function FilterSidebar({ filters, setFilters }) {
         />
       </div>
 
-      {/* Maximum Price */}
       <div className="filter-group">
         <label>Maximum Price</label>
 
@@ -115,7 +110,6 @@ export default function FilterSidebar({ filters, setFilters }) {
         />
       </div>
 
-      {/* Furnishing */}
       <div className="filter-group">
         <label>Furnishing</label>
 
@@ -136,7 +130,6 @@ export default function FilterSidebar({ filters, setFilters }) {
         </select>
       </div>
 
-      {/* Parking */}
       <div className="checkbox-filter">
         <label>
           <input
@@ -151,7 +144,6 @@ export default function FilterSidebar({ filters, setFilters }) {
         </label>
       </div>
 
-      {/* Verified */}
       <div className="checkbox-filter">
         <label>
           <input
